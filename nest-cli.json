@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/ordering-app/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/ordering-app/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/ordering-app",
+  "projects": {
+    "ordering-app": {
+      "type": "application",
+      "root": "apps/ordering-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/ordering-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/ordering-app/tsconfig.app.json"
+      }
+    },
+    "orders": {
+      "type": "application",
+      "root": "apps/orders",
+      "entryFile": "main",
+      "sourceRoot": "apps/orders/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/orders/tsconfig.app.json"
+      }
+    }
+  }
+}
