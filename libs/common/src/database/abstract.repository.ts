@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Logger, NotFoundException } from '@nestjs/common';
 import {
   FilterQuery,
@@ -18,7 +17,6 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
     private readonly connection: Connection,
   ) {}
 
-  // create a new document
   async create(
     document: Omit<TDocument, '_id'>,
     options?: SaveOptions,
@@ -32,7 +30,6 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
     ).toJSON() as unknown as TDocument;
   }
 
-  // find a document by id
   async findOne(filterQuery: FilterQuery<TDocument>): Promise<TDocument> {
     const document = await this.model.findOne(filterQuery, {}, { lean: true });
 
@@ -44,7 +41,6 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
     return document;
   }
 
-  // find a document by id and update
   async findOneAndUpdate(
     filterQuery: FilterQuery<TDocument>,
     update: UpdateQuery<TDocument>,
@@ -62,7 +58,6 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
     return document;
   }
 
-  // update and insert if not exists
   async upsert(
     filterQuery: FilterQuery<TDocument>,
     document: Partial<TDocument>,
@@ -74,12 +69,10 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
     });
   }
 
-  // find
   async find(filterQuery: FilterQuery<TDocument>) {
     return this.model.find(filterQuery, {}, { lean: true });
   }
 
-  // start a transaction
   async startTransaction() {
     const session = await this.connection.startSession();
     session.startTransaction();

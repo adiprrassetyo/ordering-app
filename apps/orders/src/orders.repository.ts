@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Injectable, Logger } from '@nestjs/common';
 import { AbstractRepository } from '@app/common';
 import { InjectModel, InjectConnection } from '@nestjs/mongoose';
