@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: billing
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: billing
+  template:
+    metadata:
+      labels:
+        app: billing
+    spec:
+      containers:
+        - name: billing
+          image: adiprrassetyo/ordering-app_billing
+          env:
+            - name: RABBIT_MQ_BILLING_QUEUE
+              value: billing
+            - name: RABBIT_MQ_AUTH_QUEUE
+              value: auth

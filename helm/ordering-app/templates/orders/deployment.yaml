@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: orders
+  template:
+    metadata:
+      labels:
+        app: orders
+    spec:
+      containers:
+        - name: orders
+          image: adiprrassetyo/ordering-app_orders
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: '3000'
+            - name: RABBIT_MQ_BILLING_QUEUE
+              value: billing
+            - name: RABBIT_MQ_AUTH_QUEUE
+              value: auth
